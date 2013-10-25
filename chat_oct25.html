@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<script src="http://chatbuilder.hackreactor.com/ChatBuilder.js"></script>
+<link rel="stylesheet" type="text/css" href="chatstyles.css">
+<link rel="stylesheet" type="text/css" href="fonts/MyFontsWebfontsKit.css">
+</head>
+<body> 
+    <script>
+        delete Chat.display;    // http://jsfiddle.net/brunoscopelliti/EpV87/9/ (hover timestamp)
+        delete Chat.fetch;
+        delete Chat.send; // css tricks // shop talk podcast
+        var existingUsers = [];
+        var messagesUntil = 1;
+        var incomingMessages = [];
+        var colorList = ["#cc0000;", "#d55108;", "#d9cd2b;", "#0ba3a9;", "#03ab21;", "#661c8a;"]; 
+        function newFetch(){
+     
+        var listItemLength =  $('.messages').find("li").length
+        for(var i = listItemLength; i < 10; i++){
+            $(".messages").prepend("<li>"+""+"</li>");
+        };
+      
+        $.getJSON( "https://api.parse.com/1/classes/chats?order=createdAt", function (data){ 
+            $.each(data.results, function (key, val){
+                if (val.username !== "RoboChat" ){
+                    incomingMessages.push(val);
+                };
+            });
+            if(incomingMessages.length > 0){
+                for(var i = 0; i < incomingMessages.length; i++){
+                    var username = incomingMessages[i].username + ""
+                    var timeStamp = ("" + incomingMessages[i].createdAt)
+                    if(existingUsers.indexOf(username) === -1){
+                        existingUsers.push(username,colorList[Math.floor(Math.random()*colorList.length)+1])
+                    };
+                    var userColor = existingUsers[existingUsers.indexOf(username)+1]
+                    var chatText = incomingMessages[i].text.substr((username.length)+1, incomingMessages[i].text.length) 
+                    if (document.getElementById( timeStamp ) === null){ // goes through the entire doc....... is that bad?
+                        $(".messages").append("<li>" + "<b>" + username +  "</b>" + chatText + "</li>").find("li:last").attr("id",timeStamp).css({"color": userColor})
+                    };// $(this).find("li").attr("id",timeStamp)
+                     // "<b>" + <#color> hoooowwww do you do this + username + </#color> + "</b>" .indexOf(username)
+                } // by reference or by value? 
+            }
+            if($('.messages').find("li").length > 100){
+                ($('.messages')).find("li:first").remove();
+            }    
+            $('.messages').scrollTop(100000000000000000000);
+            });
+        // });
+        incomingMessages = [];
+
+      }
+    $(document).ready(function() {
+
+        // $('body').css({'background-image': 'url(backgrounds/' + images[Math.floor(Math.random() *images.length)] + ')'});
+        Chat.guide.start();
+        
+        var incomingMessages = [];
+
+        newFetch();
+        setInterval(newFetch, 1000);
+        var newMessage = $('.draft')
+        var draftChat = $('.draft');
+        var sendChat = $('.send');
+       
+        newSend = function(newMessage){
+            $.ajax({
+                type: 'POST',
+                url: 'https://api.parse.com/1/classes/chats',
+                data: JSON.stringify({text : Chat.username + ': ' + newMessage, username : Chat.username}),
+                success: function(data){
+                console.log("hooray!");
+              },
+                error: function(){
+                    alert("nooooooo!");
+                },
+                dataType: 'json'
+              });
+          }
+            
+
+        draftChat.keydown(function(event){
+            if(event.keyCode == 13){
+                newSend(newMessage.val())
+                $('.draft').val('')
+            }
+        });
+
+        sendChat.on('click', function(){
+            newSend(newMessage.val())
+        $('.draft').val('');
+        });
+
+    
+    }); // close (document).ready 
+      
+    </script>
+    <h2>SAY SOMETHING</h2>
+    <ul class="messages"></ul>
+    <input class="draft" type="text"/> 
+    <button class="send">send</button>
+   
+
+  </body>
+</html>

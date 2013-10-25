@@ -1,0 +1,159 @@
+body
+{
+	background-color: white;
+	color:#2300d5;
+	padding-left: 40px;
+	font-family: 'Bender', sans-serif;
+	background-image: url('./backgrounds/pattern_038blue.gif');
+	margin:50px 0px; padding:0px;
+	text-align:center;
+	/*text-align:center;*/
+
+}
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 20px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: #2300d5;
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,0);
+}
+
+::selection
+{
+	color: #fff;
+	background-color: #2300d5;
+}
+
+h2
+{
+	font-size:74pt;
+	font-family: 'Bender-Light', sans-serif;
+	margin-top: 10px;
+	/*color: #3E3E3E;*/
+	color:#2300d5;
+	/*letter-spacing:0px;*/
+
+}
+u
+{
+	margin-top:-10px;
+	text-decoration: none;
+	border-bottom: 8px solid white;
+}
+
+ul
+{
+	border-left: 1px black;
+	list-style-type: none;
+	line-height: 140%;
+	font-family: 'Bender-Light', sans-serif;
+	font-size: 14pt;
+	letter-spacing:1px;
+	margin-top:-80px;
+	position: relative;
+	color: #3E3E3E;
+		margin-left: 0px;
+
+	/*height: 300px;*/ 
+	/* skips around from 10 to 11 to 12*/
+}
+
+
+li 
+{
+	margin-left: 5px;
+	padding-left: 2px;
+	padding-top: 2px;
+	height: 28px;
+
+}
+#color
+{
+
+}
+
+li:hover
+{
+
+}
+	 
+i
+{
+	font-family: 'Bender-Light', sans-serif;
+	font-size: 10pt;
+	color: gray;
+
+}
+
+b
+{
+	text-transform: uppercase;
+	font-family: 'Bender-Bold', sans-serif;
+}
+
+/*li:nth-child(even) {background: #F5F6CE;} /* terrible because it doesn't move with the messages*/
+
+}
+input, textarea 
+{
+	padding-left: 10px;
+	padding-top: 2px;
+	position:relative;
+/*		height: 10px;
+*/		
+}
+input
+{
+	/*padding-left: 10px;*/
+	/*z-index: -1;*/
+	padding-top: 0px;
+	position:relative;
+	width: 600px;
+	height: 40px;
+	font-size: 20px;
+	border-style: inset;
+	border-width: 2px;
+	color:#3E3E3E;
+	font-family: 'Bender-LightItalic', sans-serif;
+	outline: none; 
+	/*margin:0px auto;*/
+}
+
+.messages
+ {
+	overflow: scroll;
+	height: 320px;
+	width: 680px;
+	/*text-align:left;*/
+	background-color:white;
+	/*border-style:inset;*/
+	margin:0px auto;
+	margin-top:-70px;
+	text-align:left;
+	padding:10px;
+}
+
+.send {
+	position: relative;
+	background: #2300d5;
+	font-family: 'Bender-Light', sans-serif;
+	font-size: 30px;
+	text-transform: uppercase;
+	color: #fff;
+	width: 100px;
+	height: 45px;
+	padding: 0px;
+	border: 0px;
+	top:5px;
+
+}
+.send:hover {
+	background-color: #E6E6E6;
+	
+}
+.send:active {
+	color: #fff;
+	background-color: #2300d5;
+}
