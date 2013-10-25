@@ -124,7 +124,7 @@ input
 .messages
  {
 	overflow: scroll;
-	height: 320px;
+	height: 315px;
 	width: 680px;
 	/*text-align:left;*/
 	background-color:white;
@@ -137,7 +137,7 @@ input
 
 .send {
 	position: relative;
-	background: #2300d5;
+	background-color: #2300d5;
 	font-family: 'Bender-Light', sans-serif;
 	font-size: 30px;
 	text-transform: uppercase;
@@ -150,8 +150,8 @@ input
 
 }
 .send:hover {
-	background-color: #E6E6E6;
-	
+	background-color: #fff;
+	color: #2300d5;
 }
 .send:active {
 	color: #fff;

@@ -9,7 +9,7 @@
 </head>
 <body> 
     <script>
-        delete Chat.display;    // http://jsfiddle.net/brunoscopelliti/EpV87/9/ (hover timestamp)
+        delete Chat.display;
         delete Chat.fetch;
         delete Chat.send; // css tricks // shop talk podcast
         var existingUsers = [];
@@ -40,9 +40,8 @@
                     var chatText = incomingMessages[i].text.substr((username.length)+1, incomingMessages[i].text.length) 
                     if (document.getElementById( timeStamp ) === null){ // goes through the entire doc....... is that bad?
                         $(".messages").append("<li>" + "<b>" + username +  "</b>" + chatText + "</li>").find("li:last").attr("id",timeStamp).css({"color": userColor})
-                    };// $(this).find("li").attr("id",timeStamp)
-                     // "<b>" + <#color> hoooowwww do you do this + username + </#color> + "</b>" .indexOf(username)
-                } // by reference or by value? 
+                    };
+                }
             }
             if($('.messages').find("li").length > 100){
                 ($('.messages')).find("li:first").remove();
@@ -55,7 +54,6 @@
       }
     $(document).ready(function() {
 
-        // $('body').css({'background-image': 'url(backgrounds/' + images[Math.floor(Math.random() *images.length)] + ')'});
         Chat.guide.start();
         
         var incomingMessages = [];
