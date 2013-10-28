@@ -5,7 +5,8 @@ body
 	padding-left: 40px;
 	font-family: 'Bender', sans-serif;
 	background-image: url('./backgrounds/pattern_038blue.gif');
-	margin:50px 0px; padding:0px;
+	margin:50px 0px; 
+	padding:0px;
 	text-align:center;
 	/*text-align:center;*/
 
@@ -25,7 +26,9 @@ body
 	color: #fff;
 	background-color: #2300d5;
 }
-
+#navigation > *{
+ vertical-align:top;
+}
 h2
 {
 	font-size:74pt;
@@ -36,6 +39,7 @@ h2
 	/*letter-spacing:0px;*/
 
 }
+
 u
 {
 	margin-top:-10px;
@@ -45,19 +49,12 @@ u
 
 ul
 {
-	border-left: 1px black;
 	list-style-type: none;
-	line-height: 140%;
 	font-family: 'Bender-Light', sans-serif;
 	font-size: 14pt;
-	letter-spacing:1px;
-	margin-top:-80px;
-	position: relative;
 	color: #3E3E3E;
-		margin-left: 0px;
-
-	/*height: 300px;*/ 
-	/* skips around from 10 to 11 to 12*/
+	margin-left: 0px;
+	width: 100%;
 }
 
 
@@ -67,17 +64,13 @@ li
 	padding-left: 2px;
 	padding-top: 2px;
 	height: 28px;
+	width: 100%;
+	line-height: 140%;
+	letter-spacing:1px;
+	display:table;
 
-}
-#color
-{
+}	
 
-}
-
-li:hover
-{
-
-}
 	 
 i
 {
@@ -89,36 +82,31 @@ i
 
 b
 {
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	font-family: 'Bender-Bold', sans-serif;
 }
 
-/*li:nth-child(even) {background: #F5F6CE;} /* terrible because it doesn't move with the messages*/
-
-}
 input, textarea 
 {
 	padding-left: 10px;
-	padding-top: 2px;
-	position:relative;
-/*		height: 10px;
-*/		
+	position: relative;		
 }
+
 input
 {
-	/*padding-left: 10px;*/
-	/*z-index: -1;*/
+	top: -15px;
 	margin-top: 15px;
-	position:relative;
-	width: 590px;
+	position: relative;
+	width: 530px;
 	height: 40px;
 	font-size: 20px;
 	border-style: inset;
 	border-width: 2px;
-	color:#3E3E3E;
+	color: #3E3E3E;
 	font-family: 'Bender-LightItalic', sans-serif;
-	outline: none; 
-	/*margin:0px auto;*/
+ 	outline: none;
+ 	/*display: inline;*/
+ 	left: 23px;
 }
 
 .messages
@@ -126,16 +114,22 @@ input
 	overflow: scroll;
 	height: 315px;
 	width: 680px;
-	/*text-align:left;*/
 	background-color:white;
-	/*border-style:inset;*/
 	margin:0px auto;
 	margin-top:-80px;
 	text-align:left;
 	padding:10px;
 }
 
+#container{
+	width:705px;
+	height: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+}
 .send {
+	top:0px;
 	position: relative;
 	background-color: #2300d5;
 	font-family: 'Bender-Light', sans-serif;
@@ -144,11 +138,11 @@ input
 	color: #fff;
 	width: 100px;
 	height: 45px;
-	padding: 0px;
 	border: 0px;
-	top:5px;
+	float:right;
 
 }
+
 .send:hover {
 	background-color: #fff;
 	color: #2300d5;
@@ -156,4 +150,71 @@ input
 .send:active {
 	color: #fff;
 	background-color: #2300d5;
+}
+
+.smiley_faces {
+	top: 0px;
+	font-size: 18pt;
+	color: #2300d5;
+	float:left;
+	height: 45px;
+	width: 45px;
+	text-align: center;
+	background-color: #fff;
+}
+
+.smiley_faces:hover {
+	background-color: #2300d5;
+	color: #fff;
+}
+.smiley_faces:active {
+	color: #fff;
+	background-color: #2300d5;
+}
+#all_smiley_faces
+{
+	margin: 0;
+	padding: 0;
+	display: inline;
+	text-align: center;
+}
+
+#all_smiley_faces li
+{
+	float: left;
+	text-align: center;
+	background-color: #fff;
+	color: #2300d5;
+	list-style-type: none;
+	padding: 0px;
+	margin: -1px;
+	width: 45px;
+   	height: 45px;
+   	border-width: .5px;
+   	border-style: inset;
+	border-color:  #2300d5;
+}
+
+#smiley_dropdown.dropdown{
+	overflow: hidden;
+	text-align: center;
+	background-color: none;
+   	width: 45px;
+   	height: 43px;
+   	margin-right: 15px;
+   	position: absolute;
+}
+
+#smiley_dropdown.dropdown:hover{
+	z-index: 5000;
+	text-align: center;
+   	display: block;
+   	width: 130px;
+   	height: 130px;
+   	background-color: white;
+}
+
+footer
+{
+	height: 100px;
 }

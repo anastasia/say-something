@@ -16,6 +16,15 @@
         var messagesUntil = 1;
         var incomingMessages = [];
         var colorList = ["#cc0000;", "#d55108;", "#d9cd2b;", "#0ba3a9;", "#03ab21;", "#661c8a;"]; 
+        $("#messages").scroll(function(){
+            scrolled = true;
+        });   
+        var scrolled = false;
+        function updateScroll(){
+            if(!scrolled){
+                $('.messages').scrollTop(100000000000000000000);
+            }
+        }
         function newFetch(){
      
         var listItemLength =  $('.messages').find("li").length
@@ -38,20 +47,24 @@
                     };
                     var userColor = existingUsers[existingUsers.indexOf(username)+1]
                     var chatText = incomingMessages[i].text.substr((username.length)+1, incomingMessages[i].text.length) 
-                    if (document.getElementById( timeStamp ) === null){ // goes through the entire doc....... is that bad?
+                    if (document.getElementById(timeStamp) === null){ // goes through the entire doc....... is that bad?
                         $(".messages").append("<li>" + "<b>" + username +  "</b>" + chatText + "</li>").find("li:last").attr("id",timeStamp).css({"color": userColor})
                     };
                 }
             }
-            if($('.messages').find("li").length > 100){
+            while($('.messages').find("li").length > 100){
                 ($('.messages')).find("li:first").remove();
-            }    
-            $('.messages').scrollTop(100000000000000000000);
+            } 
+
+            
+            updateScroll();
+
+            
+            // $('.messages').scrollTop(100000000000000000000);
             });
-        // });
         incomingMessages = [];
 
-      }
+     }
     $(document).ready(function() {
 
         Chat.guide.start();
@@ -59,11 +72,12 @@
         var incomingMessages = [];
 
         newFetch();
+
         setInterval(newFetch, 1000);
         var newMessage = $('.draft')
         var draftChat = $('.draft');
         var sendChat = $('.send');
-       
+        var smiley_faces = $('.smiley_faces')
         newSend = function(newMessage){
             $.ajax({
                 type: 'POST',
@@ -79,28 +93,54 @@
               });
           }
             
+        smiley_faces.on('click', function(){
+            var str = $('.draft').val();
+            $('.draft').val(str + $(this).attr('id') + "")
+        });
+
+        $('ol.menu-items li').on('mouseenter', function(){
+            $('div.dropdown').hide();  
+        $('div.dropdown').show();          
+    });
+
+// $('ul.menu-items li').on('mouseout', function() {
+//     $('div.dropdown-menu').hide();        
+// });
 
         draftChat.keydown(function(event){
             if(event.keyCode == 13){
                 newSend(newMessage.val())
-                $('.draft').val('')
-            }
+                $('.draft').val('')};
         });
-
-        sendChat.on('click', function(){
+        if(newMessage.val.length > 0){
+            sendChat.on('click', function(){
             newSend(newMessage.val())
-        $('.draft').val('');
-        });
+            $('.draft').val('');
+        });};
 
     
     }); // close (document).ready 
       
     </script>
     <h2>SAY SOMETHING</h2>
-    <ul class="messages"></ul>
-    <input class="draft" type="text"/> 
+    <ul class="messages" id="messages"></ul>
+    <div id="container">
+    <div class="dropdown" id="smiley_dropdown">
+    <ol id="all_smiley_faces">
+    <li><button class="smiley_faces" id="✏">✏</button></li>
+    <li><button class="smiley_faces" id="☀">☀</button></li>
+    <li><button class="smiley_faces" id="☻">☻</button></li>
+    <li><button class="smiley_faces" id="☹">☹</button></li>
+    <li><button class="smiley_faces" id="✿">✿</button></li>
+    <li><button class="smiley_faces" id="☂">☂</button></li>
+    <li><button class="smiley_faces" id="♫">♫</button></li>
+    <li><button class="smiley_faces" id="❤">❤</button></li>
+    <li><button class="smiley_faces" id="✭">✭</button></li>
+    </ol>
+    </div>
+    <input class="draft" type="text"/>
     <button class="send">send</button>
-   
-
+    </div>
+    <footer/>
   </body>
 </html>
