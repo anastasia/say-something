@@ -16,25 +16,25 @@
         var messagesUntil = 1;
         var incomingMessages = [];
         var colorList = ["#cc0000;", "#d55108;", "#d9cd2b;", "#0ba3a9;", "#03ab21;", "#661c8a;"]; 
-       
         var scrolled = false;
-        function updateScroll(){
-            if(!scrolled){
-                $('.messages').scrollTop(100000000000000000000);
-            }
-        }
+
+        
         function newFetch(){
-     
+        function updateScroll(){
+                if(!scrolled){
+                    $('.messages').scrollTop($('.messages')[0].scrollHeight);
+                }
+            }
         var listItemLength =  $('.messages').find("li").length
         for(var i = listItemLength; i < 10; i++){
             $(".messages").prepend("<li>"+""+"</li>");
         };
-      
+        
         $.getJSON( "https://api.parse.com/1/classes/chats?order=createdAt", function (data){ 
             $.each(data.results, function (key, val){
-                if (val.username !== "RoboChat" ){
+                // if (val.username !== "RoboChat" ){
                     incomingMessages.push(val);
-                };
+                // };
             });
             if(incomingMessages.length > 0){
                 for(var i = 0; i < incomingMessages.length; i++){
@@ -70,9 +70,9 @@
         var incomingMessages = [];
 
         newFetch();
-          $("#messages").scroll(function(){
+        $("#messages").on("scroll", function(){
             scrolled = true;
-        });  
+        });
 
         setInterval(newFetch, 1000);
         var newMessage = $('.draft')
