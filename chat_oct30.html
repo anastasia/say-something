@@ -11,14 +11,11 @@
     <script>
         delete Chat.display;
         delete Chat.fetch;
-        delete Chat.send; // css tricks // shop talk podcast
+        delete Chat.send;
         var existingUsers = [];
-        var messagesUntil = 1;
         var incomingMessages = [];
-        var colorList = ["#cc0000;", "#d55108;", "#d9cd2b;", "#0ba3a9;", "#03ab21;", "#661c8a;"]; 
+        var colorList = ["#cc0000;", "#d55108;", "#0ba3a9;", "#03ab21;", "#661c8a;"]; 
         var scrolled = false;
-
-        
         function newFetch(){
         function updateScroll(){
                 if(!scrolled){
@@ -32,21 +29,22 @@
         
         $.getJSON( "https://api.parse.com/1/classes/chats?order=createdAt", function (data){ 
             $.each(data.results, function (key, val){
-                // if (val.username !== "RoboChat" ){
+                if (val.username !== "RoboChat" ){
                     incomingMessages.push(val);
-                // };
+                };
             });
             if(incomingMessages.length > 0){
                 for(var i = 0; i < incomingMessages.length; i++){
-                    var username = incomingMessages[i].username + ""
-                    var timeStamp = ("" + incomingMessages[i].createdAt)
+                    var username = incomingMessages[i].username + "";
+                    var timeStamp = incomingMessages[i].createdAt
+                    var betterTimeStamp = " (" + (new Date().getHours()) + timeStamp.slice(timeStamp.indexOf("T")+3, timeStamp.indexOf(".")) + "):"
                     if(existingUsers.indexOf(username) === -1){
                         existingUsers.push(username,colorList[Math.floor(Math.random()*colorList.length)+1])
                     };
                     var userColor = existingUsers[existingUsers.indexOf(username)+1]
                     var chatText = incomingMessages[i].text.substr((username.length)+1, incomingMessages[i].text.length) 
                     if (document.getElementById(timeStamp) === null){ // goes through the entire doc....... is that bad?
-                        $(".messages").append("<li>" + "<b>" + username +  "</b>" + chatText + "</li>").find("li:last").attr("id",timeStamp).css({"color": userColor})
+                        $(".messages").append("<li>" + "<b>" + username +  "</b>" + betterTimeStamp + chatText + "</li>").find("li:last").attr("id",timeStamp).css({"color": userColor})
                     };
                 }
             }
@@ -70,9 +68,9 @@
         var incomingMessages = [];
 
         newFetch();
-        $("#messages").on("scroll", function(){
-            scrolled = true;
-        });
+        // $("#messages").on("scroll", function(){
+        //     scrolled = true;
+        // });
 
         setInterval(newFetch, 1000);
         var newMessage = $('.draft')
